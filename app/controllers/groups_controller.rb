@@ -33,13 +33,7 @@ end
      @group.destroy
        redirect_to groups_path, alert: "Group deleted"
   end
-private
 
-  def group_params
-   params.require(:group).permit(:title, :description)
- end
-
-end
 private
 
   def find_group_and_check_permission
