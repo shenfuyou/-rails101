@@ -1,12 +1,13 @@
 class GroupsController < ApplicationController
    before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
 before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
+ scope :recent, -> { order("created_at DESC")}
   def index
     @groups = Group.all
   end
   def show
     @group = Group.find(params[:id])
-      @posts = @group.posts.order("created_at DESC")
+      @posts = @group.posts.recent
  end
  def edit
  end
